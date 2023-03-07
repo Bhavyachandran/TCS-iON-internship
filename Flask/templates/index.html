@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Salary Prediction ML</title>
+
+    
+    
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    #section1 {
+      height: 600px;
+      background-color: pink;
+    }
+    
+    #section2 {
+      height: 600px;
+      background-color: yellow;
+    }
+    </style>
+<body>
+    <header>
+        <div class="first_container">
+            <nav class ="first_nav">
+                <ul>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+						
+							<li id="new_prediction"><a href="{{ url_for('prediction')}}">New Prediction</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+    <section class ="first_sec">
+        
+        <h1>SALARY PREDICTION</h1>
+
+        <div class ="form">
+            <!-- Main Input For Receiving Query to our ML -->
+
+            <form action ="{{ url_for('predict')}}"methods="post">
+            <div class="firstDiv">
+                    <span>
+                        <div class="namefield">
+                            <label for="MarriedID">Married or Not</label>
+                        </div>   
+                        <div class="inputField">
+                         <select id="MarriedID" name="MarriedID" placeholder="choose ID" required="required">
+                            <option value="" disabled selected hidden>--Select--</option>
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                         </select>
+                        </div>
+                    </span>
+
+
+                    <span>
+                        <div class="nameField">
+                            <label for="'FromDiversityJobFairID">From diversity job fair</label>
+                        </div>
+                        <div clas="inputField">
+                            <select id="'FromDiversityJobFairID" name="'FromDiversityJobFairID" placeholder="choose ID" required="required">
+                                <option value="" disabled selected hidden>--Select--</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                        </span>
+                        
+                        
+                        <span>
+                            <div class="namefield">
+                                <label for="Termd">Terminated or not</label>    
+                            </div>
+                            <div class="inputField">
+                                <select id="Termd" name="Termd" placeholder="choose ID" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </span>
+
+                        <span>
+                            <div class="nameField">
+                                <label for="Position">Position</label>
+                            </div>
+                            <div class="InputField">
+                                <select id="Position" name="Position" placeholder="choose option" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option value="0">Accountant I</option>
+                                    <option value="1">Administrative Assistant</option>
+                                    <option value="2">Area Sales Manager</option>
+                                    <option value="3">BI Developer</option>
+                                    <option value="4">BI Director</option>
+                                    <option value="5">CIO</option>
+                                    <option value="6">Data Analyst</option>
+                                    <option value="7">Data Architect</option>
+                                    <option value="8">Database Administrator</option>
+                                    <option value="9">Director of Operations</option>
+                                    <option value="10">Director of Sales</option>
+                                    <option value="11">Enterprise Architect</option>
+                                    <option value="12">IT Director</option>
+                                    <option value="13">IT Manager - DB</option>
+                                    <option value="14">IT Manager - Infra</option>
+                                    <option value="15">IT Manager - Support</option>
+                                    <option value="16">IT Support</option>
+                                    <option value="17">Network Engineer</option>
+                                    <option value="18">President & CEO</option>
+                                    <option value="19">Principal Data Architect</option>
+                                    <option value="20">Production Manager</option>
+                                    <option value="21">Production Technician I</option>
+                                    <option value="22">Production Technician II</option>
+                                    <option value="23">Sales Manager</option>
+                                    <option value="24">Senior BI Developer</option>
+                                    <option value="25">Shared Services Manager</option>
+                                    <option value="26">Software Engineer</option>
+                                    <option value="27">Software Engineering Manager</option>
+                                    <option value="28">Sr. Accountant</option>
+                                    <option value="29">Sr. DBA</option>
+                                    <option value="30">Sr. Network Engineer</option>    
+                                </select>
+                            </div>
+                        </span>
+
+
+                        <sapn>
+                            <div class="nameField">
+                                <label for="State">State</label>
+                            </div>
+
+                            <div class="inputField">
+                                <select id="State" name="State" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option  value="0">AL</option>
+                                    <option  value="1">AZ</option>
+                                    <option  value="2">CA</option>
+                                    <option  value="3">CO</option>
+                                    <option  value="4">CT</option>
+                                    <option  value="5">FL</option>
+                                    <option  value="6">GA</option>
+                                    <option  value="7">ID</option>
+                                    <option  value="8">IN</option>
+                                    <option  value="9">KY</option>
+                                    <option  value="10">MA</option>
+                                    <option  value="11">ME</option>
+                                    <option  value="12">MT</option>
+                                    <option  value="13">NC</option>
+                                    <option  value="14">ND</option>
+                                    <option  value="15">NH</option>
+                                    <option  value="16">NV</option>
+                                    <option  value="17">NY</option>
+                                    <option  value="18">OH</option>
+                                    <option  value="19">OR</option>
+                                    <option  value="20">PA</option>
+                                    <option  value="21">RI</option>
+                                    <option  value="22">TN</option>
+                                    <option  value="23">TX</option>
+                                    <option  value="24">UT</option>
+                                    <option  value="25">VA</option>
+                                    <option  value="26">VT</option>
+                                    <option  value="27">WA</option>
+                                </select>
+                            </div>
+                        </sapn>          
+
+
+                        <span>
+                            <div class="nameField">
+                                  <label for="Zip">Age</label>
+                            </div>
+                            <div class="inputField">
+                                  <input type="number" step="any" id = "Zip" name="Zip" placeholder="Enter Zip code"  required="required" />
+                            </div>
+                        </span>
+
+                        
+                        
+                        
+                        <Span>
+                            <div class="nameField">
+                                <Label for="Sex">sex</Label>
+                            </div>
+                            <div class="inputField">
+                                <Select id="Sex" name="sex" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option  value="0">Female</option>
+                                    <option  value="1">Male</option>
+                                </Select>
+                            </div>
+                        </Span>
+
+                        <Span>
+                            <div class="nameField">
+                                <Label for="MaritalDesc">Marital status</Label>
+                            </div>
+                            <div class="inputField">
+                                <Select id="MaritalDesc" name="MaritalDesc" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option  value="0">Divorced</option>
+                                    <option  value="1">Married</option>
+                                    <option  value="2">Separated</option>
+                                    <option  value="3">Single</option>
+                                    <option  value="4">Widowed</option>
+                                </Select>
+                            </div>
+                        </Span>
+
+
+                        <Span>
+                            <div class="nameField">
+                                <Label for="CitizenDesc">Citizenship</Label>
+                            </div>
+                            <div class="inputField">
+                                <Select id="CitizenDesc" name="CitizenDesc" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option  value="0">Eligible NonCitizen</option>
+                                    <option  value="1">Non-Citizen</option>
+                                    <option  value="2">US Citizen</option>
+                                </Select>
+                            </div>
+                        </Span>
+
+
+                        <Span>
+                            <div class="nameField">
+                                <Label for="HispanicLatino">HispanicLatino</Label>
+                            </div>
+                            <div class="inputField">
+                                <Select id="HispanicLatino" name="HispanicLatino" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option  value="0">No</option>
+                                    <option  value="1">Yes</option>
+                                </Select>
+                            </div>
+                        </Span>
+
+                        <Span>
+                            <div class="nameField">
+                                <Label for="RaceDesc">Race</Label>
+                            </div>
+                            <div class="inputField">
+                                <Select id="RaceDesc" name="RaceDesc" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option  value="0">American Indian or Alaska Native</option>
+                                    <option  value="1">Asian</option>
+                                    <option  value="2">Black or African American</option>
+                                    <option  value="3">Hispanic</option>
+                                    <option  value="4">Two or more races</option>
+                                    <option  value="5">White</option>
+                                </Select>
+                            </div>
+                        </Span>
+
+
+ 
+                        <sapn>
+                            <div class="nameField">
+                                <label for="TermReason">Termination Reason</label>
+                            </div>
+
+                            <div class="inputField">
+                                <select id="TermReason" name="TermReason" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option  value="0">Another position</option>
+                                    <option  value="1">Fatal attraction</option>
+                                    <option  value="2">Learned that he is a gangster</option>
+                                    <option  value="3">N/A-StillEmployed</option>
+                                    <option  value="4">attendance</option>
+                                    <option  value="5">career change</option>
+                                    <option  value="6">gross misconduct</option>
+                                    <option  value="7">hours</option>
+                                    <option  value="8">maternity leave - did not return</option>
+                                    <option  value="9">medical issues</option>
+                                    <option  value="10">military</option>
+                                    <option  value="11">more money</option>
+                                    <option  value="12">no-call, no-show</option>
+                                    <option  value="13">performance</option>
+                                    <option  value="14">relocation out of area</option>
+                                    <option  value="15">retiring</option>
+                                    <option  value="16">return to school</option>
+                                    <option  value="17">unhappy</option>
+                                    
+                                </select>
+                            </div>
+                        </sapn>
+
+
+                        <Span>
+                            <div class="nameField">
+                                <Label for="EmploymentStatus">Employment Status</Label>
+                            </div>
+                            <div class="inputField">
+                                <Select id="EmploymentStatus" name="EmploymentStatus" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option  value="0">Active</option>
+                                    <option  value="1">Terminated for Cause</option>
+                                    <option  value="2">Voluntarily Terminated</option>
+                                </Select>
+                            </div>
+                        </Span>
+
+
+                        <Span>
+                            <div class="nameField">
+                                <Label for="Department">Department</Label>
+                            </div>
+                            <div class="inputField">
+                                <Select id="Department" name="Department" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option  value="0">Admin Offices</option>
+                                    <option  value="1">Executive Office</option>
+                                    <option  value="2">IT/IS</option>
+                                    <option  value="3">Production</option>
+                                    <option  value="4">Sales</option>
+                                    <option  value="5">Software Engineering</option>
+                                </Select>
+                            </div>
+                        </Span>
+
+                        <sapn>
+                            <div class="nameField">
+                                <label for="ManagerName">Manager Name</label>
+                            </div>
+
+                            <div class="inputField">
+                                <select id="ManagerName" name="ManagerName" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option  value="0">Alex Sweetwater</option>
+                                    <option  value="1">Amy Dunn</option>
+                                    <option  value="2">Board of Directors</option>
+                                    <option  value="3">Brandon R. LeBlanc</option>
+                                    <option  value="4">Brannon Miller</option>
+                                    <option  value="5">Brian Champaigne</option>
+                                    <option  value="6">David Stanley</option>
+                                    <option  value="7">Debra Houlihan</option>
+                                    <option  value="8">Elijiah Gray</option>
+                                    <option  value="9">Eric Dougall</option>
+                                    <option  value="10">Janet King</option>
+                                    <option  value="11">Jennifer Zamora</option>
+                                    <option  value="12">John Smith</option>
+                                    <option  value="13">Kelley Spirea</option>
+                                    <option  value="14">Ketsia Liebig</option>
+                                    <option  value="15">Kissy Sullivan</option>
+                                    <option  value="16">Lynn Daneault</option>
+                                    <option  value="17">Michael Albert</option>
+                                    <option  value="18">Peter Monroe</option>
+                                    <option  value="19">Simon Roup</option>
+                                    <option  value="20">Webster Butler</option>
+                                </select>
+                            </div>
+                        </sapn>          
+
+
+
+            
+                        <Span>
+                            <div class="nameField">
+                                <Label for="RecruitmentSource">Recruitment Source</Label>
+                            </div>
+                            <div class="inputField">
+                                <Select id="RecruitmentSource" name="RecruitmentSource" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option  value="0">Career Builder</option>
+                                    <option  value="1">Diversity Job Fair</option>
+                                    <option  value="2">Employee Referral</option>
+                                    <option  value="3">Google Search</option>
+                                    <option  value="4">Indeed</option>
+                                    <option  value="5">LinkedIn</option>
+                                    <option  value="6">On-line Web application</option>
+                                    <option  value="7">other</option>
+                                    <option  value="8">website</option>
+                                </Select>
+                            </div>
+                        </Span>
+
+
+                        <Span>
+                            <div class="nameField">
+                                <Label for="PerformanceScore">Performance Score</Label>
+                            </div>
+                            <div class="inputField">
+                                <Select id="PerformanceScore" name="PerformanceScore" required="required">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option  value="0">Exceeds</option>
+                                    <option  value="1">Fully meets</option>
+                                    <option  value="2">Needs improvement</option>
+                                    <option  value="3">PIP</option>
+                                    
+                                </Select>
+                            </div>
+                        </Span>
+
+
+                        <span>
+                            <div class="nameField">
+                                  <label for="EngagementSurvey">Age</label>
+                            </div>
+                            <div class="inputField">
+                                  <input type="number" step="any" id = "EngagementSurvey" name="EngagementSurvey" placeholder="Enter engagement survey score"  required="required" />
+                            </div>
+                        </span>
+
+
+
+                        <span>
+                            <div class="nameField">
+                                  <label for="EmpSatisfaction">Age</label>
+                            </div>
+                            <div class="inputField">
+                                  <input type="number" step="any" id = "EmpSatisfaction" name="EmpSatisfaction" placeholder="Enter Empploy Satisfaction"  required="required" />
+                            </div>
+                        </span>
+
+
+
+                        <span>
+                            <div class="nameField">
+                                  <label for="SpecialProjectsCount">Special Projects Count</label>
+                            </div>
+                            <div class="inputField">
+                                  <input type="number" step="any" id = "SpecialProjectsCount" name="SpecialProjectsCount" placeholder="Enter Special Projects Count"  required="required" />
+                            </div>
+                        </span>
+                        
+
+                        <span>
+                            <div class="nameField">
+                                  <label for="DaysLateLast30">Days Late for Last30</label>
+                            </div>
+                            <div class="inputField">
+                                  <input type="number" step="any" id = "DaysLateLast30" name="DaysLateLast30" placeholder="Enter no of days late in last 30 days"  required="required" />
+                            </div>
+                        </span>
+                        
+
+
+                        <span>
+                            <div class="nameField">
+                                  <label for="'Absences">'Absences</label>
+                            </div>
+                            <div class="inputField">
+                                  <input type="number" step="any" id = "'Absences" name="'Absences" placeholder="Enter 'Absences"  required="required" />
+                            </div>
+                        </span>
+                        
+
+                        <span>
+                            <div class="nameField">
+                                  <label for="Experience">Experience</label>
+                            </div>
+                            <div class="inputField">
+                                  <input type="number" step="any" id = "Experience" name="Experience" placeholder="Enter Experience"  required="required" />
+                            </div>
+                        </span>
+                        
+
+                        <span>
+                            <div class="nameField">
+                                  <label for="Age">Age</label>
+                            </div>
+                            <div class="inputField">
+                                  <input type="number" step="any" id = "Age" name="Age" placeholder="Enter Age"  required="required" />
+                            </div>
+                        </span>
+                        
+                        
+                        
+                           </label>
+                        </div>
+                    </span>
+                    
+
+
+
+                        </div>
+                        </span>
+
+                    </span>
+
+                </div>
+            </form>
+        </div>
+        <span>
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+          </span>
+    </section>
+    <div id="img">
+        <img src="/static/images/pexels-juan-pablo-serrano-arenas-1242348.jpg" >
+    </div>
+</body>
+</html>
