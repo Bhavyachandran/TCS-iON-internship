@@ -14,6 +14,7 @@ body{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 18px;
 }
+
 body{
   background-image: url("../images/pexels-juan-pablo-serrano-arenas-1242348.jpg");
   background-position: center;
@@ -31,13 +32,43 @@ body{
     font-size: 20px;
     border-radius:4px;
     width:100px;
-    height:25px;
+    height:100px;
 }
+
 #submit:hover{
     background-color:lightsalmon;
     transition: .5s ease-in-out;
     color:black;
 }
+
+
+
+.firstDiv{
+
+    padding: 0px;
+    width: 55%; 
+    float:center;
+    height: 600px;
+    margin-top:50px;
+    margin-right: 0px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin: 0px 0 0 50px; 
+  }
+  .secondDiv{
+    padding: 0px;
+    width: 280%; 
+    float:center;
+    height: 550px;
+    margin-top:0px;
+    margin-right: 0px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin: -500px 0 0 0px;  
+  }
+
+
+
 input[type=text] {
     font-size: 15px;
     text-align: center;
