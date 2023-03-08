@@ -43,7 +43,7 @@ def predict():
      final_features = pd.DataFrame(data=final_features, index=[0])
      prediction = model.predict(final_features)
 
-     output = 'Predicted salary :'
+     output = print('Predicted salary :', prediction)
 
      # the predicted value is returned to the html
      return render_template('prediction.html', prediction_text='{}'.format(output))
